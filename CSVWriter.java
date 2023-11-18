@@ -7,7 +7,7 @@ public class CSVWriter {
 
     }
 
-    public static void writeStudentMessage(String message) {
+    public static void writeStudentMessage(String id, String message) {
 
     }
 }
