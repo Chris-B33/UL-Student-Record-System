@@ -38,6 +38,7 @@ public class Interpreter {
                     System.out.println("Invalid entry.");
             }
         }
+        in.close();
     }
 
     private static void initializeDatabase() {
@@ -45,10 +46,10 @@ public class Interpreter {
     }
 
     private static void getMessages(String id) {
-        String[] messages = new String[3];
+        ArrayList<Student> messages = CSVReader.readStudentMessages(id);
 
-        for (int i = 0; i < messages.length; i++) {
-            System.out.println(messages[i]);
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(messages.get(i));
         }
     }
 }
