@@ -1,15 +1,15 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Department {
     private String name;
-    private Scanner in;
 
     public Department(String _name) {
         this.name = _name;
-        in = new Scanner(System.in);
     }
 
     public void run() {
+        Scanner in = new Scanner(System.in);
         System.out.printf("[Faculty of %s]\n", this.name.toUpperCase());
         boolean run = true;
         while (run) {
@@ -40,6 +40,10 @@ public class Department {
     }
 
     public void writeMessageToStudent(String id, String message) {
-        CSVWriter.writeStudentMessage(id, message);
+        try {
+            CSVWriter.writeStudentMessage(id, message);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 }
