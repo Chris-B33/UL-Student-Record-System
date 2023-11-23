@@ -1,31 +1,40 @@
 import java.util.ArrayList;
-public class Semester
+public class Course
 {
-    private ArrayList<Module> modules;
-    private int number;
-    private double weighting;
+    private String name;
+    private ArrayList<Semester> semesters;
+    private ArrayList<Student> classList;
+    private int semPerYear;
 
-    public Semester(int number, double weighting) {
-        this.modules = new ArrayList<>();
-        this.number = number;
-        this.weighting = weighting;
+    public Course(String name, int semPerYear) {
+        this.name = name;
+        this.semesters = new ArrayList<>();
+        this.classList = new ArrayList<>();
+        this.semPerYear = semPerYear;
     }
-    public ArrayList<Module> getModules() {
-        return modules;
+    public String getName() {
+        return name;
     }
-    public void setModules(ArrayList<Module> modules) {
-        this.modules = modules;
+    public void setName(String name) {
+        this.name = name;
     }
-    public int getNumber() {
-        return number;
+    public ArrayList<Semester> getSemesters() {
+        return semesters;
     }
-    public void setNumber(int number) {
-        this.number = number;
+    public void setSemesters(ArrayList<Semester> semesters) {
+        this.semesters = semesters;
     }
-    public double getWeighting() {
-        return weighting;
+    public ArrayList<Student> getClassList() {
+        return classList;
     }
-    public void setWeighting(double weighting) {
-        this.weighting = weighting;
+    public void setClassList(ArrayList<Student> classList) {
+        this.classList = classList;
+    }
+    public int getSemPerYear() {
+        return semPerYear;
+    }
+    public void setSemPerYear(int semPerYear) {
+        this.semPerYear = semPerYear;
     }
 }
+
