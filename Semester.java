@@ -1,40 +1,45 @@
 import java.util.ArrayList;
-public class Course
+public class Semester
 {
-    private String name;
-    private ArrayList<Semester> semesters;
-    private ArrayList<Student> classList;
-    private int semPerYear;
+    private ArrayList<Module> modules;
+    private int number;
+    private int year;
+    private double credits;
+    private double weighting;
 
-    public Course(String name, int semPerYear) {
-        this.name = name;
-        this.semesters = new ArrayList<>();
-        this.classList = new ArrayList<>();
-        this.semPerYear = semPerYear;
+    public Semester(int number, double weighting) {
+        this.modules = new ArrayList<>();
+        this.number = number;
+        this.weighting = weighting;
     }
-    public String getName() {
-        return name;
+    public ArrayList<Module> getModules() {
+        return modules;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setModules(ArrayList<Module> modules) {
+        this.modules = modules;
     }
-    public ArrayList<Semester> getSemesters() {
-        return semesters;
+    public int getNumber() {
+        return number;
     }
-    public void setSemesters(ArrayList<Semester> semesters) {
-        this.semesters = semesters;
+    public void setNumber(int number) {
+        this.number = number;
     }
-    public ArrayList<Student> getClassList() {
-        return classList;
+    public int getYear(){
+        return year;
     }
-    public void setClassList(ArrayList<Student> classList) {
-        this.classList = classList;
+    public void setYear(int year){
+        this.year = year;
     }
-    public int getSemPerYear() {
-        return semPerYear;
+    public double getCredits() {
+        return credits;
     }
-    public void setSemPerYear(int semPerYear) {
-        this.semPerYear = semPerYear;
+    public void setCredits(double credits) {
+        this.credits = credits;
+    }
+    public double getWeighting() {
+        return weighting;
+     }
+    public void setWeighting(double weighting) {
+        this.weighting = weighting;
     }
 }
-
