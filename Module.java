@@ -3,11 +3,14 @@ public class Module
 {
     private String name;
     private String code;
+    private double credits;
+    private String fileName;
     private ArrayList<String> enrolledStudents;
 
     public Module(String name, String code) {
         this.name = name;
         this.code = code;
+        this.credits = credits;
         this.enrolledStudents = new ArrayList<>();
     }
     public void addStudent(String id) {
@@ -28,6 +31,18 @@ public class Module
     public void setCode(String code) {
         this.code = code;
     }
+    public double getCredits() {
+        return credits;
+    }
+    public void setCredits(double credits) {
+        this.credits = credits;
+    }
+    public String getFile() {
+        return fileName;
+    }
+    public void setFile(String fileName) {
+        this.fileName = fileName;
+    }
     public ArrayList<String> getEnrolledStudents() {
         return enrolledStudents;
     }
@@ -35,3 +50,4 @@ public class Module
         this.enrolledStudents = enrolledStudents;
     }
 }
+
