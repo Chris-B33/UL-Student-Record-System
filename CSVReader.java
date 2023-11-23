@@ -29,9 +29,9 @@ public class CSVReader
         }
     }
     
-    public static ArrayList<Student> readClassRole(String fileName)
+    public static ArrayList<String> readClassRole(String fileName)
     {
-        ArrayList<Student> classRole = new ArrayList<>();
+        ArrayList<String> classRole = new ArrayList<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(fileName)))
         {
@@ -42,7 +42,7 @@ public class CSVReader
                 String[] roleData = line.split(splitBy);
                 String id = roleData[0];
                 
-                Student s = new Student(id);
+                String s = id;
                 
                 classRole.add(s);
             }
@@ -53,6 +53,36 @@ public class CSVReader
         }
         
         return classRole;
+    }
+    
+    public static ArrayList<Double> readStudentResult(String fileName, String id){
+        ArrayList<Double> stuResults = new ArrayList<>();
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName)))
+        {
+            String line = "";
+            String splitBy = ",";
+            
+            while ((line = br.readLine()) != null)
+            {
+                String[] results = line.split(splitBy);
+                String resultId = results[0];
+                
+                if (resultId.equals(id))
+                {
+                    for (int i = 1; i < results.length; i++)
+                    {
+                        stuResults.add(Double.valueOf(results[i]));
+                    }
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        
+        return stuResults;
     }
     
     public static ArrayList<String> readStudentMessages(String id)

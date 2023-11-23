@@ -11,27 +11,6 @@ public class Student {
         this.course = c;
     }
 
-    public void run() {
-        System.out.printf("[Student ID: %s]\n", this.id);
-
-        Scanner in = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
-            System.out.println("Commands: (G)et transcript, (E)xit");
-            String command = in.nextLine().toUpperCase();
-            switch (command) {
-                case "G":
-                    this.getTranscript();
-                    break;
-                case "E":
-                    run = false;
-                    break;
-                default:
-                    System.out.println("Invalid command.");
-            }
-        }
-    }
-
     public void getTranscript() {
         Transcript.displayTranscript(this);
     }
@@ -45,7 +24,7 @@ public class Student {
     }
 
     public String getCourseName(){
-        return this.course.getCourseName();
+        return this.course.getName();
     }
     
     public Course getCourse(){

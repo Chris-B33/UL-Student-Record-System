@@ -12,7 +12,7 @@ public class Transcript {
 
         ArrayList<Semester> semesters = c.getSemesters();
         for(int i = 0; i < semesters.size(); i++){
-            Transcript.semesterBox(semesters.get(i));
+            Transcript.semesterBox(semesters.get(i), c);
         }
 
     }
@@ -29,19 +29,19 @@ public class Transcript {
         System.out.println(box);
     }
 
-    private static void semesterBox(Semester sem){
+    private static void semesterBox(Semester sem, Course c){
         String boxQCA = "+--------------------------------------------------------------------------------------------+---------------------------+";
         String gapQCA = "|                                                                                            |                           |";
 
         System.out.println(boxQCA);
-        System.out.println("| " + sem.getYear() + "         " + sem.getSemNum() + "                                                                        |            Session To-Date|"); //year n semester n session to date
+        System.out.println("| " + ((sem.getNumber() - 1) / c.getSemestersPerYear()) + 1 + "         " + sem.getNumber() + "                                                                        |            Session To-Date|"); //year n semester n session to date
         System.out.println(gapQCA);
         System.out.println("|Module       Title                                             Regn Type  Grade   Credits   |Factor      1.000          |");
         System.out.println(gapQCA);
         
         ArrayList<Module> modules = sem.getModules();
         for(int i = 0; i < modules.size(); i++){
-            System.out.println("|" + modules.get(i).getModuleCode() + "      " + modules.get(i).getModuleName() + "                         N             C3   6       |Cred Hours  30.00   30.00  |");
+            System.out.println("|" + modules.get(i).getCode() + "      " + modules.get(i).getName() + "                         N             C3   6       |Cred Hours  30.00   30.00  |");
             // get grades n stuff
         } 
 

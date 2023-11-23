@@ -1,4 +1,5 @@
 import java.io.*;
+import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
@@ -71,5 +72,28 @@ public class CSVWriter
         }
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
+    
+    public static void addStudent(String fileName, String id)
+    {
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new FileWriter(fileName, true));
+            bw.write(id);
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    
+                }
+            }
+        }
+    }
 }
+
+
 
