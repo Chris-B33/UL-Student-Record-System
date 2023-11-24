@@ -34,7 +34,7 @@ public class Transcript {
         String gapQCA = "|                                                                                            |                           |";
 
         System.out.println(boxQCA);
-        System.out.println("| " + ((sem.getNumber() - 1) / c.getSemestersPerYear()) + 1 + "         " + sem.getNumber() + "                                                                        |            Session To-Date|"); //year n semester n session to date
+        System.out.println("| " + ((sem.getNumber() - 1) / c.getSemPerYear()) + 1 + "         " + sem.getNumber() + "                                                                        |            Session To-Date|"); //year n semester n session to date
         System.out.println(gapQCA);
         System.out.println("|Module       Title                                             Regn Type  Grade   Credits   |Factor      1.000          |");
         System.out.println(gapQCA);
