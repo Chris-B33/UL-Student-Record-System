@@ -9,6 +9,20 @@ public class CSVWriter
 {
     private static String messagesFileName;// = path to file must have done for message system to work.
     
+    public static void setMessagesFileName(String fileName)
+    {
+        messagesFileName = fileName;
+    }
+    
+    /**
+     * CSVFile layout example
+     *
+     * student1Id,result1,result2,result3
+     * student2Id,result1,result2,result3
+     * student3Id,result1,result2,result3
+     * student4Id,result1,result2,result3
+     * 
+     */
     public static void insertGrade(String id, double grade, String moduleName) throws IOException 
     {
         File csvFile = new File(moduleName);
@@ -27,6 +41,15 @@ public class CSVWriter
         Files.write(csvFile.toPath(), lines, StandardCharsets.UTF_8);
     }
 
+    /**
+     * CSVFile layout example
+     *
+     * student1Id,result1,result2,result3
+     * student2Id,result1,result2,result3
+     * student3Id,result1,result2,result3
+     * student4Id,result1,result2,result3
+     * 
+     */
     public static void removeGrade(String id, int index, String moduleName) throws IOException 
     {
         Path path = Paths.get(moduleName);
@@ -56,6 +79,15 @@ public class CSVWriter
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
 
+    /**
+     * CSVFile layout example
+     *
+     * student1Id,message1,message2,message3
+     * student2Id,message1,message2,message3
+     * student3Id,message1,message2,message3
+     * student4Id,message1,message2,message3
+     * 
+     */
     public static void writeStudentMessage(String id, String message) throws IOException 
     {
         Path path = Paths.get(messagesFileName);
@@ -73,6 +105,15 @@ public class CSVWriter
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
     
+    /**
+     * CSVFile layout example
+     *
+     * student1Id,result1,result2,result3
+     * student2Id,result1,result2,result3
+     * student3Id,result1,result2,result3
+     * student4Id,result1,result2,result3
+     * 
+     */
     public static void addStudent(String fileName, String id)
     {
         BufferedWriter bw = null;

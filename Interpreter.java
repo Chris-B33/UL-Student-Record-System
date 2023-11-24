@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Interpreter {
     private ArrayList<Course> courses;
+    
+    private static User user;
 
     public static void main(String[] args) {
         initializeDatabase();
@@ -20,16 +22,23 @@ public class Interpreter {
                     String id = in.nextLine();
                     getMessages(id);
                     Student student = new Student(id);
-                    student.run();
+                    user = new User("Student", student);
+                    user.run();
+                    //Student student = new Student(id);
+                    //student.run();
                     break;
                 case "F":
                     Faculty faculty = new Faculty();
-                    faculty.run();
+                    user = new User("Faculty", faculty);
+                    user.run();
+                    //faculty.run();
                     break;
                 case "D":
                     System.out.println("What is the name of your department?");
                     Department department = new Department(in.nextLine());
-                    department.run();
+                    user = new User("Department", department);
+                    user.run();
+                    //department.run();
                     break;
                 case "E":
                     run = false;
@@ -42,7 +51,19 @@ public class Interpreter {
     }
 
     private static void initializeDatabase() {
-
+        // initialize Students from csv example
+        Course c = new Course("LM174", 2);
+        ArrayList<String> ids = CSVReader.initStudentId(fileName);
+        ArrayList<String> names = CSVReader.initStudentName(fileName);
+        ArrayList<Student> courseList;
+        
+        for (int i = 0; i < ids.size() && i < names.size(); i++)
+        {
+            Student stu = new Student(ids.get(i), names.get(i), c);
+            courseList.add(stu);
+        }
+        
+        c.setClassList(courseList);
     }
 
     private static void getMessages(String id) {
