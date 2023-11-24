@@ -1,31 +1,24 @@
 import java.util.Scanner;
 
-public class User
-{
+public class User {
     private String userType;
     private Object userObject;
-    private Scanner in;
-    
+
     /**
      * Constructor for objects of class User
      */
-    public User(String _userType, Object _userObject)
-    {
+    public User(String _userType, Object _userObject) {
         this.userType = _userType;
         this.userObject = _userObject;
     }
-    
-    public void run()
-    {
+
+    public void run() {
         Scanner in = new Scanner(System.in);
         boolean run = true;
-        if (userType.equals("Student"))
-        {
-            Student stud = (Student) userObject;
-            System.out.printf("[Student ID: %s]\n", stud.getId());
+        CSVWriter.setMessagesFileName("messages.csv");
 
-            //Scanner in = new Scanner(System.in);
-            //boolean run = true;
+        if (userType.equals("Student")) {
+            Student stud = (Student) userObject;
             while (run) {
                 System.out.println("Commands: (G)et transcript, (E)xit");
                 String command = in.nextLine().toUpperCase();
@@ -40,12 +33,8 @@ public class User
                         System.out.println("Invalid command.");
                 }
             }
-        }
-        else if (userType.equals("Faculty"))
-        {
+        } else if (userType.equals("Faculty")) {
             Faculty facu = (Faculty) userObject;
-            
-            //boolean run = true;
             while (run) {
                 System.out.println("Commands: (A)dd grade, (G)et transcript, (E)xit");
                 String command = in.nextLine().toUpperCase();
@@ -63,13 +52,9 @@ public class User
                         System.out.println("Invalid command.");
                 }
             }
-        }
-        else if (userType.equals("Department"))
-        {
+        } else if (userType.equals("Department")) {
             Department depa = (Department) userObject;
-            //Scanner in = new Scanner(System.in);
             System.out.printf("[Faculty of %s]\n", (depa.getName()).toUpperCase());
-            //boolean run = true;
             while (run) {
                 System.out.println("Commands: (W)rite Message, (H)old Exam Board, (E)xit");
                 String command = in.nextLine().toUpperCase();
@@ -92,5 +77,8 @@ public class User
                 }
             }
         }
+        // DO NOT CLOSE SCANNER HERE.
+        // JAVA ONLY ALLOWS ONE FOR PROGRAM.
+        // CLOSING HERE CLOSES ALL.
     }
 }

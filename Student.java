@@ -1,33 +1,29 @@
-import java.util.Scanner;
-
 public class Student {
     private String id;
     private String name;
     private Course course;
 
-    public Student(String _id, String n, Course c) {
+    public Student(String _id) {
         this.id = _id;
-        this.name = n;
-        this.course = c;
     }
 
     public void getTranscript() {
         Transcript.displayTranscript(this);
     }
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getCourseName(){
+    public String getCourseName() {
         return this.course.getName();
     }
-    
-    public Course getCourse(){
+
+    public Course getCourse() {
         return this.course;
     }
 }
