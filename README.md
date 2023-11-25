@@ -1,4 +1,4 @@
-# UL-Student-Record-System
+# UL-Student-Record-System Project Progress
 
 ## Meeting 1:
 * Collaboratively brainstormed UML diagrams.
@@ -26,3 +26,12 @@
 * Committed updated changes to GitHub.
 * Conducted a trial run to assess the interaction of classes/objects.
 
+## Meeting 6
+* Team members committed their respective codes to GitHub for collective analysis.
+* Collaboratively addressed and resolved errors, providing assistance to team members.
+* Discussed overall project progress and identified elements needing completion before the next meeting.
+* Established a provisional deadline for comprehensive testing and analysis of the entire project.
+
+## Meeting 7
+* In-depth discussion of code errors, pinpointing areas requiring modification or addition before the provisional deadline.
+* Analyzed and strategized for necessary code changes to meet project requirements.
