@@ -4,14 +4,14 @@ public class GradeCalculator
     public static String getGrade(Module module, String id) {
         String grade = "";
         String file = module.getFile();
-        ArrayList<Double> studentResults = CSVReader.readStudentResults(file, id);
+        ArrayList<Double> studentResults = CSVReader.readStudentResult(file, id);
         int[] bounds = new int[12];
         String[] grades = new String[12];
         CSVReader.readGradeFile(GradingScheme.csv, bounds, grades);
-        
+
         double total = 0;
         int index = 0;
-        
+
         for (Double results : studentResults){
             total += results;
         }
@@ -68,28 +68,48 @@ public class GradeCalculator
             System.out.println("I");
         }
 
-        double QCS = modQCA*modCredits;
-        System.out.println(QCS);
+        double modQCS = modQCA*modCredits;
+        return modQCS;
     }
     public static double calculateQCA(Semester semester, String id) {
         double semCredits= semester.getCredits();
-        double QCS = calculateQCS();
-        double semQCA = QCS/semCredits;
-        System.out.println(semQCA);
-    }
-    public static double calculateQCA(Course course, String id) {
-        double totalQCA = 0.0;
-        double totalCredits = 0.0;
-        
-        // //if semester weighting counts to final add semQCA
-        // //semQCAs added = totalQCAs
-        // if (.getWeighting>0){
-            // semQCA += totalQCA;
-            // semCredits += totalCredits;
-        // }
-        
-        double finalQCA = totalQCA/totalCredits;
+        ArrayList<Module> mods = semester.getModules();
 
+        double modQCS = 0;
+        double QCS = 0;
+        double semQCA = 0;
+
+        for (int i=0; i<mods.size(); i++){
+            modQCS = calculateQCS(mods.get(i), id);
+            QCS += modQCS;
+        }
+        semQCA = QCS/semCredits;
+        return semQCA;
+     }
+    public static double calculateQCA(Course course, Semester semester, String id) {
+        ArrayList<Semester> semNum = course.getSemesters();
+        double semWeighting = semester.getWeighting();
+        double semQCA = 0;
+        double semCredits= semester.getCredits();
+
+        double totalQCA = 0;
+        double totalCredits = 0;
+        double finalQCA = 0;
+
+        for (int i=0; i<semNum.size(); i++){
+            semQCA = calculateQCA(semNum.get(i), id);
+            if (semWeighting > 0){
+                totalCredits += semCredits*semWeighting;
+            }
+            else{
+                totalCredits += semCredits;
+            }
+            totalQCA += semQCA;
+        }
+
+        finalQCA = totalQCA/totalCredits;
+        return finalQCA;
+        
         if (finalQCA >= 3.40) {
             System.out.println("First class honours");
         } else if (finalQCA < 3.40 && finalQCA >= 3.00) {
