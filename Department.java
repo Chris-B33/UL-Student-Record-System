@@ -48,7 +48,7 @@ public class Department {
         double avg1 = sum1 / classLength;
         double avg2 = sum2 / classLength;
 
-        System.out.printf("Did the average QCA of the class increase: %s", avg1 < avg2);
+        System.out.printf("Average QCA change: %s\n", avg1 - avg2);
     }
 
     public void writeMessageToStudent(String id, String message) {
