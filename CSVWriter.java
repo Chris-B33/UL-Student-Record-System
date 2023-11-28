@@ -1,5 +1,4 @@
 import java.io.*;
-import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
@@ -7,21 +6,11 @@ import java.nio.file.*;
 
 /**
  * This class provides methods to write and manipulate CSV files.
+ * 
  * @author (Dara O'Malley)
  * @ID (22349243)
  */
 public class CSVWriter {
-    private static String messagesFileName = "messages.csv";// = path to file must have done for message system to work.
-
-    /**
-     * Sets the file name for the messages file.
-     *
-     * @param fileName The name of the file.
-     */
-    public static void setMessagesFileName(String fileName) {
-        messagesFileName = fileName;
-    }
-
     /*
      * CSVFile layout example
      *
@@ -34,8 +23,8 @@ public class CSVWriter {
     /**
      * Inserts a grade for a student in a CSV file.
      *
-     * @param id The ID of the student.
-     * @param grade The grade to be inserted.
+     * @param id         The ID of the student.
+     * @param grade      The grade to be inserted.
      * @param moduleName The name of the module.
      * @throws IOException If an input or output exception occurred.
      */
@@ -66,8 +55,8 @@ public class CSVWriter {
     /**
      * Removes a grade for a student in a CSV file.
      *
-     * @param id The ID of the student.
-     * @param index The index of the grade to be removed.
+     * @param id         The ID of the student.
+     * @param index      The index of the grade to be removed.
      * @param moduleName The name of the module.
      * @throws IOException If an input or output exception occurred.
      */
@@ -106,7 +95,7 @@ public class CSVWriter {
     /**
      * Writes a message for a student in a CSV file.
      *
-     * @param id The ID of the student.
+     * @param id      The ID of the student.
      * @param message The message to be written.
      * @throws IOException If an input or output exception occurred.
      */
@@ -114,13 +103,18 @@ public class CSVWriter {
         Path path = Paths.get("messages.csv");
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
-        for (int i = 0; i < lines.size(); i++) {
+        int i;
+        for (i = 0; i < lines.size(); i++) {
             String[] messages = lines.get(i).split(",");
             if (messages[0].equals(id)) {
                 lines.set(i, lines.get(i) + "," + message);
                 break;
             }
         }
+        if (i == lines.size()) {
+            lines.add(id + "," + message);
+        }
+
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
 
@@ -137,7 +131,7 @@ public class CSVWriter {
      * Adds a student to a CSV file.
      *
      * @param fileName The name of the file.
-     * @param id The ID of the student.
+     * @param id       The ID of the student.
      */
     public static void addStudent(String fileName, String id) {
         BufferedWriter bw = null;

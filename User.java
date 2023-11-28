@@ -15,7 +15,6 @@ public class User {
     public void run() {
         Scanner in = new Scanner(System.in);
         boolean run = true;
-        CSVWriter.setMessagesFileName("messages.csv");
 
         if (userType.equals("Student")) {
             Student stud = (Student) userObject;
