@@ -46,50 +46,41 @@ public class Interpreter {
     }
 
     private static void initializeDatabase() {
-        Course course1 = initCourse("LM174.csv", "Artificial Intelligence and Machine Learning", 2, "Bachelor", "Taught");
-        
+        Course course1 = initCourse("LM174.csv", "Artificial Intelligence and Machine Learning", 2, "Bachelor",
+                "Taught");
+
         ArrayList<Semester> semList = new ArrayList<>();
-        
-        for(int i = 1; i < 9; i++)
-        {
+
+        for (int i = 1; i < 9; i++) {
             double weight = 0;
             double cred = 30;
-            if (i < 3)
-            {
+            if (i < 3) {
                 weight = 0;
-            }
-            else if(1 < 5)
-            {
+            } else if (i < 5) {
                 weight = 1;
-            }
-            else if(1 < 7)
-            {
+            } else if (i < 7) {
                 weight = 2;
-            }
-            else if(1 < 9)
-            {
+            } else if (i < 9) {
                 weight = 2;
             }
             Semester s = initSemester(i, weight, cred);
             semList.add(s);
         }
         course1.setSemesters(semList);
-        
+
         ArrayList<Module> modList = CSVReader.initModList("LM174ModList.csv");
-        
-        for (Module mod : modList)
-        {
+
+        for (Module mod : modList) {
             int i = 1;
             int j = 0;
-            if (i / 5 == 1)
-            {
+            if (i / 5 == 1) {
                 j++;
             }
-            
+
             course1.getSemesters().get(j).getModules().add(mod);
             i++;
         }
-        
+
         courseList.add(course1);
     }
 
@@ -100,9 +91,8 @@ public class Interpreter {
             System.out.println(messages.get(i));
         }
     }
-    
-    private static Course initCourse(String fileName, String courseName, int semPerYear, String level, String type)
-    {
+
+    private static Course initCourse(String fileName, String courseName, int semPerYear, String level, String type) {
         Course c = new Course(courseName, semPerYear);
         ArrayList<String> ids = CSVReader.initStudentId(fileName);
         ArrayList<Student> courseList = new ArrayList<Student>();
@@ -118,37 +108,31 @@ public class Interpreter {
         c.setType(type);
         return c;
     }
-    
-    private static Semester initSemester(int number, double weighting, double credits)
-    {
+
+    private static Semester initSemester(int number, double weighting, double credits) {
         Semester s = new Semester(number, weighting);
         s.setCredits(credits);
         return s;
     }
-    
-    public static Module initModule(String fileName, String name, String code, double credits)
-    {
+
+    public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
-        
+
         m.setEnrolledStudents(CSVReader.readClassRole(fileName));
-        
+
         m.setCredits(credits);
-        
+
         return m;
     }
-    
-    public static Student returnStudent(String id)
-    {
-        for (Course c : courseList)
-        {
-                   ArrayList<Student> studList = c.getClassList(); 
-                   for (Student s : studList)
-                   {
-                       if(s.getId().equals(id))
-                       {
-                           return s;
-                       }
-                   }
+
+    public static Student returnStudent(String id) {
+        for (Course c : courseList) {
+            ArrayList<Student> studList = c.getClassList();
+            for (Student s : studList) {
+                if (s.getId().equals(id)) {
+                    return s;
+                }
+            }
         }
         return null;
     }
