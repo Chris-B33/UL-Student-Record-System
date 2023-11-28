@@ -8,7 +8,6 @@ public class Interpreter {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean run = true;
-        initializeDatabase();
 
         while (run) {
             System.out.println("Commands: (S)tudent, (F)aculty, (D)epartment, (E)xit");
@@ -30,8 +29,8 @@ public class Interpreter {
                     user.run();
                     break;
                 case "D":
-                    System.out.println("What is the name of your department?");
-                    Department department = new Department(in.nextLine());
+                    System.out.println("What is the name of your course?");
+                    Department department = new Department(initializeDatabase(in.nextLine()));
                     user = new User("Department", department);
                     user.run();
                     break;
@@ -45,8 +44,11 @@ public class Interpreter {
         in.close();
     }
 
-    private static void initializeDatabase() {
-        Course course1 = initCourse("LM174.csv", "Artificial Intelligence and Machine Learning", 2, "Bachelor",
+    private static Course initializeDatabase(String _name) {
+        Course course1 = initCourse(String.format("%s.csv", _name),
+                "Artificial Intelligence and Machine Learning",
+                2,
+                "Bachelor",
                 "Taught");
 
         ArrayList<Semester> semList = new ArrayList<>();
@@ -82,6 +84,7 @@ public class Interpreter {
         }
 
         courseList.add(course1);
+        return course1;
     }
 
     private static void getMessages(String id) {
