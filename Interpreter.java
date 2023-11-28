@@ -3,11 +3,12 @@ import java.util.Scanner;
 
 public class Interpreter {
     private static User user;
-    private static ArrayList<Course> courseList;
+    private static ArrayList<Course> courseList = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean run = true;
+        initializeDatabase();
 
         while (run) {
             System.out.println("Commands: (S)tudent, (F)aculty, (D)epartment, (E)xit");
@@ -108,6 +109,7 @@ public class Interpreter {
 
         for (int i = 0; i < ids.size(); i++) {
             Student stu = new Student(ids.get(i));
+            stu.setCourse(c);
             courseList.add(stu);
         }
 
@@ -135,7 +137,7 @@ public class Interpreter {
         return m;
     }
     
-    private static Student returnStudent(String id)
+    public static Student returnStudent(String id)
     {
         for (Course c : courseList)
         {

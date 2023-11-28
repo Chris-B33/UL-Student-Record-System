@@ -26,4 +26,9 @@ public class Student {
     public Course getCourse() {
         return this.course;
     }
+    
+    public void setCourse(Course c)
+    {
+        this.course = c;
+    }
 }

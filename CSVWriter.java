@@ -5,14 +5,24 @@ import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 
+/**
+ * This class provides methods to write and manipulate CSV files.
+ * @author (Dara O'Malley)
+ * @ID (22349243)
+ */
 public class CSVWriter {
-    private static String messagesFileName;// = path to file must have done for message system to work.
+    private static String messagesFileName = "messages.csv";// = path to file must have done for message system to work.
 
+    /**
+     * Sets the file name for the messages file.
+     *
+     * @param fileName The name of the file.
+     */
     public static void setMessagesFileName(String fileName) {
         messagesFileName = fileName;
     }
 
-    /**
+    /*
      * CSVFile layout example
      *
      * student1Id,result1,result2,result3
@@ -20,6 +30,14 @@ public class CSVWriter {
      * student3Id,result1,result2,result3
      * student4Id,result1,result2,result3
      * 
+     */
+    /**
+     * Inserts a grade for a student in a CSV file.
+     *
+     * @param id The ID of the student.
+     * @param grade The grade to be inserted.
+     * @param moduleName The name of the module.
+     * @throws IOException If an input or output exception occurred.
      */
     public static void insertGrade(String id, double grade, String moduleName) throws IOException {
         File csvFile = new File(moduleName);
@@ -36,7 +54,7 @@ public class CSVWriter {
         Files.write(csvFile.toPath(), lines, StandardCharsets.UTF_8);
     }
 
-    /**
+    /*
      * CSVFile layout example
      *
      * student1Id,result1,result2,result3
@@ -44,6 +62,14 @@ public class CSVWriter {
      * student3Id,result1,result2,result3
      * student4Id,result1,result2,result3
      * 
+     */
+    /**
+     * Removes a grade for a student in a CSV file.
+     *
+     * @param id The ID of the student.
+     * @param index The index of the grade to be removed.
+     * @param moduleName The name of the module.
+     * @throws IOException If an input or output exception occurred.
      */
     public static void removeGrade(String id, int index, String moduleName) throws IOException {
         Path path = Paths.get(moduleName);
@@ -68,7 +94,7 @@ public class CSVWriter {
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
 
-    /**
+    /*
      * CSVFile layout example
      *
      * student1Id,message1,message2,message3
@@ -76,6 +102,13 @@ public class CSVWriter {
      * student3Id,message1,message2,message3
      * student4Id,message1,message2,message3
      * 
+     */
+    /**
+     * Writes a message for a student in a CSV file.
+     *
+     * @param id The ID of the student.
+     * @param message The message to be written.
+     * @throws IOException If an input or output exception occurred.
      */
     public static void writeStudentMessage(String id, String message) throws IOException {
         Path path = Paths.get("messages.csv");
@@ -91,7 +124,7 @@ public class CSVWriter {
         Files.write(path, lines, StandardCharsets.UTF_8);
     }
 
-    /**
+    /*
      * CSVFile layout example
      *
      * student1Id,result1,result2,result3
@@ -99,6 +132,12 @@ public class CSVWriter {
      * student3Id,result1,result2,result3
      * student4Id,result1,result2,result3
      * 
+     */
+    /**
+     * Adds a student to a CSV file.
+     *
+     * @param fileName The name of the file.
+     * @param id The ID of the student.
      */
     public static void addStudent(String fileName, String id) {
         BufferedWriter bw = null;

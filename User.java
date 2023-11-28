@@ -43,7 +43,10 @@ public class User {
                         facu.addGradeToModule(null, null, 0);
                         break;
                     case "G":
-                        facu.getStudentTranscript(null);
+                        System.out.println("Enter Student ID?");
+                        String id = in.nextLine();
+                        Student student = Interpreter.returnStudent(id);
+                        facu.getStudentTranscript(student);
                         break;
                     case "E":
                         run = false;
