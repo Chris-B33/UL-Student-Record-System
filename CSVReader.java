@@ -168,4 +168,32 @@ public class CSVReader {
 
         return idList;
     }
+    
+    public static ArrayList<Module> initModList(String fileName)
+    {
+        ArrayList<Module> modList = new ArrayList<>();
+        
+        String line = "";
+        String csvSplitBy = ",";
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName)))
+        {
+            while ((line = br.readLine()) != null)
+            {
+                String[] modData = line.split(csvSplitBy);
+                
+                String file = modData[0];
+                String name = modData[1];
+                String code = modData[2];
+                double creds = Double.parseDouble(modData[3]);
+                Module m = Interpreter.initModule(file,name,code,creds);
+                modList.add(m);
+            }
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        
+        return modList;
+    }
 }

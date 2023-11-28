@@ -7,7 +7,14 @@ public class GradeCalculator
         ArrayList<Double> studentResults = CSVReader.readStudentResult(file, id);
         int[] bounds = new int[12];
         String[] grades = new String[12];
-        CSVReader.readGradeFile(GradingScheme.csv, bounds, grades);
+        try
+        {
+            CSVReader.readGradingScheme("GradingScheme.csv", bounds, grades);
+        }
+        catch (java.io.IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
 
         double total = 0;
         int index = 0;
@@ -110,16 +117,16 @@ public class GradeCalculator
         finalQCA = totalQCA/totalCredits;
         return finalQCA;
         
-        if (finalQCA >= 3.40) {
-            System.out.println("First class honours");
-        } else if (finalQCA < 3.40 && finalQCA >= 3.00) {
-            System.out.println("Second class honours grade 1 (2.1)");
-        } else if (finalQCA < 3.00 && finalQCA >= 2.60) {
-            System.out.println("Second class honours grade 2 (2.2)");
-        } else if (finalQCA < 2.60 && finalQCA >= 2.00) {
-            System.out.println("Third class honours");
-        } else {
-            System.out.println("");
-        }
+        // if (finalQCA >= 3.40) {
+            // System.out.println("First class honours");
+        // } else if (finalQCA < 3.40 && finalQCA >= 3.00) {
+            // System.out.println("Second class honours grade 1 (2.1)");
+        // } else if (finalQCA < 3.00 && finalQCA >= 2.60) {
+            // System.out.println("Second class honours grade 2 (2.2)");
+        // } else if (finalQCA < 2.60 && finalQCA >= 2.00) {
+            // System.out.println("Third class honours");
+        // } else {
+            // System.out.println("");
+        // }
     }
 }

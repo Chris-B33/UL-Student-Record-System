@@ -5,6 +5,8 @@ public class Course
     private ArrayList<Semester> semesters;
     private ArrayList<Student> classList;
     private int semPerYear;
+    private String level;
+    private String type;
 
     public Course(String name, int semPerYear) {
         this.name = name;
@@ -35,5 +37,21 @@ public class Course
     }
     public void setSemPerYear(int semPerYear) {
         this.semPerYear = semPerYear;
+    }
+    public String getLevel()
+    {
+        return level;
+    }
+    public void setLevel(String _level)
+    {
+        this.level = _level;
+    }
+    public String getType()
+    {
+        return type;
+    }
+    public void setType(String _type)
+    {
+        this.type = _type;
     }
 }
