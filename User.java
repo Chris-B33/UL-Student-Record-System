@@ -37,13 +37,22 @@ public class User {
             while (run) {
                 System.out.println("Commands: (A)dd grade, (G)et transcript, (E)xit");
                 String command = in.nextLine().toUpperCase();
+                String id;
                 switch (command) {
                     case "A":
-                        facu.addGradeToModule(null, null, 0);
+                        System.out.println("What is the Student's ID?");
+                        id = in.nextLine();
+                        System.out.println("What is the module's name?");
+                        String code = in.nextLine();
+                        Module m = new Module(code, code);
+                        m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
+                        System.out.println("What is the grade?");
+                        String grade = in.nextLine();
+                        facu.addGradeToModule(new Student(id), m, Double.parseDouble(grade));
                         break;
                     case "G":
                         System.out.println("Enter Student ID?");
-                        String id = in.nextLine();
+                        id = in.nextLine();
                         Student student = Interpreter.returnStudent(id);
                         facu.getStudentTranscript(student);
                         break;
