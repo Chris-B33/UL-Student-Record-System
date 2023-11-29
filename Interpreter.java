@@ -5,6 +5,11 @@ public class Interpreter {
     private static User user;
     private static ArrayList<Course> courseList = new ArrayList<>();
 
+    /**
+     * The main method that runs when this file is ran.
+     * 
+     * @param args None needed
+     */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean run = true;
@@ -12,7 +17,7 @@ public class Interpreter {
         while (run) {
             System.out.println("Commands: (S)tudent, (F)aculty, (D)epartment, (E)xit");
             String command = in.nextLine().toUpperCase();
-
+            initializeDatabase();
             switch (command) {
                 case "S":
                     System.out.println("What is your Student ID?");
@@ -30,7 +35,7 @@ public class Interpreter {
                     break;
                 case "D":
                     System.out.println("What is the name of your course?");
-                    Department department = new Department(initializeDatabase(in.nextLine()));
+                    Department department = new Department(courseList.get(0));
                     user = new User("Department", department);
                     user.run();
                     break;
@@ -44,8 +49,11 @@ public class Interpreter {
         in.close();
     }
 
-    private static Course initializeDatabase(String _name) {
-        Course course1 = initCourse(String.format("%s.csv", _name),
+    /*
+     * Initialize database of courses from csv files.
+     */
+    private static void initializeDatabase() {
+        Course course1 = initCourse("LM174.csv",
                 "Artificial Intelligence and Machine Learning",
                 2,
                 "Bachelor",
@@ -57,7 +65,7 @@ public class Interpreter {
             double weight = 0;
             double cred = 30;
             if (i < 3) {
-                weight = 0;
+                weight = 1;
             } else if (i < 5) {
                 weight = 1;
             } else if (i < 7) {
@@ -84,9 +92,13 @@ public class Interpreter {
         }
 
         courseList.add(course1);
-        return course1;
     }
 
+    /**
+     * Gets messages addressed to a student with a certain ID.
+     * 
+     * @param id ID of the student whos messages are being read.
+     */
     private static void getMessages(String id) {
         ArrayList<String> messages = CSVReader.readStudentMessages(id);
 
@@ -95,6 +107,16 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Initializes a course given arguments.
+     * 
+     * @param fileName   name of the file
+     * @param courseName name of the course
+     * @param semPerYear amount of semesters per year
+     * @param level      level of the course
+     * @param type       type of degree studied
+     * @return Course The course that was initialized.
+     */
     private static Course initCourse(String fileName, String courseName, int semPerYear, String level, String type) {
         Course c = new Course(courseName, semPerYear);
         ArrayList<String> ids = CSVReader.initStudentId(fileName);
@@ -112,12 +134,28 @@ public class Interpreter {
         return c;
     }
 
+    /**
+     * Initializes a semester given certain arguments.
+     * 
+     * @param number    number within course
+     * @param weighting weighting of semester compared to other years
+     * @param credits   credits given per semester
+     * @return Semester the initialized semester.
+     */
     private static Semester initSemester(int number, double weighting, double credits) {
         Semester s = new Semester(number, weighting);
         s.setCredits(credits);
         return s;
     }
 
+    /**
+     * 
+     * @param fileName
+     * @param name
+     * @param code
+     * @param credits
+     * @return Module
+     */
     public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
 
@@ -128,10 +166,17 @@ public class Interpreter {
         return m;
     }
 
+    /**
+     * Gets a student from the initialized courses.
+     * 
+     * @param id id of the student
+     * @return Student the student that was initialized
+     */
     public static Student returnStudent(String id) {
         for (Course c : courseList) {
             ArrayList<Student> studList = c.getClassList();
             for (Student s : studList) {
+                System.out.println(s.getId());
                 if (s.getId().equals(id)) {
                     return s;
                 }

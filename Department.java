@@ -9,20 +9,23 @@ public class Department {
         this.course = _course;
     }
 
+    /*
+     * Runs exam board to review student progression.
+     */
     public void holdExamBoard() {
         int classLength = this.course.getClassList().size();
         ArrayList<Student> classList = this.course.getClassList();
         ArrayList<Semester> semesterList = this.course.getSemesters();
 
         // Examine qca of each student from last semester
-        Semester lastSemester = semesterList.get(semesterList.size() - 2);
+        Semester lastSemester = semesterList.get(0);
         double[] classQCAsSem1 = new double[classLength];
         for (int i = 0; i < classLength; i++) {
             classQCAsSem1[i] = GradeCalculator.calculateQCA(lastSemester, classList.get(i).getId());
         }
 
         // Repeat for current semester
-        Semester thisSemester = semesterList.get(semesterList.size() - 1);
+        Semester thisSemester = semesterList.get(1);
         double[] classQCAsSem2 = new double[classLength];
         for (int i = 0; i < classLength; i++) {
             classQCAsSem2[i] = GradeCalculator.calculateQCA(thisSemester, classList.get(i).getId());
@@ -51,6 +54,12 @@ public class Department {
         System.out.printf("Average QCA change: %s\n", avg1 - avg2);
     }
 
+    /**
+     * Stores a message for a student given their ID
+     * 
+     * @param id      id of student
+     * @param message message to student
+     */
     public void writeMessageToStudent(String id, String message) {
         try {
             CSVWriter.writeStudentMessage(id, message);
@@ -59,6 +68,11 @@ public class Department {
         }
     }
 
+    /**
+     * Gets the name of the course.
+     * 
+     * @return String name of the course.
+     */
     public String getName() {
         return this.course.getName();
     }
