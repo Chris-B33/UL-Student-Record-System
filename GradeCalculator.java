@@ -1,6 +1,17 @@
 import java.util.ArrayList;
+/**
+ * The `GradeCalculator` class provides methods to calculate and retrieve grades, Quality Credit Score (QCS),
+ * and Quality Credit Average (QCA) for modules, semesters, and courses based on a grading scheme.
+ */
 public class GradeCalculator
 {
+    /**
+     * Retrieves the grade for a given student in a specific module.
+     *
+     * @param module The module for which the grade is to be determined.
+     * @param id     The student ID.
+     * @return The calculated grade.
+     */
     public static String getGrade(Module module, String id) {
         String grade = "";
         String file = module.getFile();
@@ -29,6 +40,14 @@ public class GradeCalculator
         }
         return grades[index];
     }
+    
+    /**
+     * Calculates the Quality Credit Score (QCS) for a given student in a specific module.
+     *
+     * @param module The module for which QCS is to be calculated.
+     * @param id     The student ID.
+     * @return The calculated QCS.
+     */
     public static double calculateQCS(Module module, String id) {
         String grade = getGrade(module, id);
         double modCredits = module.getCredits();
@@ -78,6 +97,14 @@ public class GradeCalculator
         double modQCS = modQCA*modCredits;
         return modQCS;
     }
+    
+     /**
+     * Calculates the Quality Credit Average (QCA) for a given student in a specific semester.
+     *
+     * @param semester The semester for which QCA is to be calculated.
+     * @param id       The student ID.
+     * @return The calculated QCA.
+     */
     public static double calculateQCA(Semester semester, String id) {
         double semCredits= semester.getCredits();
         ArrayList<Module> mods = semester.getModules();
@@ -93,6 +120,16 @@ public class GradeCalculator
         semQCA = QCS/semCredits;
         return semQCA;
      }
+     
+    
+    /**
+     * Calculates the Quality Credit Average (QCA) for a given student in a specific semester and course.
+     *
+     * @param course   The course to which the semester belongs.
+     * @param semester The semester for which QCA is to be calculated.
+     * @param id       The student ID.
+     * @return The calculated QCA.
+     */
     public static double calculateQCA(Course course, Semester semester, String id) {
         ArrayList<Semester> semNum = course.getSemesters();
         double semWeighting = semester.getWeighting();
