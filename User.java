@@ -42,13 +42,15 @@ public class User {
                     case "A":
                         System.out.println("What is the Student's ID?");
                         id = in.nextLine();
+                        Interpreter.returnStudent(id);
                         System.out.println("What is the module's name?");
                         String code = in.nextLine();
-                        Module m = new Module(code, code);
-                        m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
+                        Module mod = Interpreter.returnModule(code);
+                        //Module m = new Module(code, code);
+                        //m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
                         System.out.println("What is the grade?");
                         String grade = in.nextLine();
-                        facu.addGradeToModule(new Student(id), m, Double.parseDouble(grade));
+                        facu.addGradeToModule(new Student(id), mod, Double.parseDouble(grade));
                         break;
                     case "G":
                         System.out.println("Enter Student ID?");

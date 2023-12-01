@@ -13,11 +13,12 @@ public class Interpreter {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean run = true;
+        initializeDatabase();
 
         while (run) {
             System.out.println("Commands: (S)tudent, (F)aculty, (D)epartment, (E)xit");
             String command = in.nextLine().toUpperCase();
-            initializeDatabase();
+            
             switch (command) {
                 case "S":
                     System.out.println("What is your Student ID?");
@@ -80,16 +81,30 @@ public class Interpreter {
 
         ArrayList<Module> modList = CSVReader.initModList("LM174ModList.csv");
 
-        for (Module mod : modList) {
-            int i = 1;
-            int j = 0;
-            if (i / 5 == 1) {
-                j++;
+        int moduleIndex = 0;
+        for (Semester sem : semList)
+        {
+            while (moduleIndex < modList.size() && sem.getModules().size() < 5)
+            {
+                sem.getModules().add(modList.get(moduleIndex));
+                moduleIndex++;
             }
-
-            course1.getSemesters().get(j).getModules().add(mod);
-            i++;
+            if (moduleIndex >= modList.size())
+            {
+                break;
+            }
         }
+        //Need to fix
+        // for (Module mod : modList) {
+            // int i = 1;
+            // int j = 0;
+            // if (i / 5 == 1) {
+                // j++;
+            // }
+
+            // course1.getSemesters().get(j).getModules().add(mod);
+            // i++;
+        // }
 
         courseList.add(course1);
     }
@@ -158,6 +173,8 @@ public class Interpreter {
      */
     public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
+        
+        m.setFile(fileName);
 
         m.setEnrolledStudents(CSVReader.readClassRole(fileName));
 
@@ -179,6 +196,24 @@ public class Interpreter {
                 System.out.println(s.getId());
                 if (s.getId().equals(id)) {
                     return s;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public static Module returnModule(String code)
+    {
+        for (Course c : courseList) {
+            ArrayList<Semester> semList = c.getSemesters();
+            for (Semester sem : semList) {
+                ArrayList<Module> modList = sem.getModules();
+                for (Module mod : modList)
+                {
+                    //System.out.println(s.getId());
+                    if (mod.getCode().equals(code)) {
+                        return mod;
+                    }
                 }
             }
         }
