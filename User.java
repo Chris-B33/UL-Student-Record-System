@@ -47,7 +47,11 @@ public class User {
                             break;
                         }
                         System.out.println("What is the module's name?");
-                        String code = in.nextLine();
+                        String code = in.nextLine().toUpperCase();
+                        if (Interpreter.returnModule(code) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
                         Module mod = Interpreter.returnModule(code);
                         // Module m = new Module(code, code);
                         // m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
