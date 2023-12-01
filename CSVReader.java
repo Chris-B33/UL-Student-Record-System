@@ -160,7 +160,6 @@ public class CSVReader {
 
         try (BufferedReader br = new BufferedReader(new FileReader("data/" + messagesFileName))) {
             String line = "";
-            String inbox = "";
 
             while ((line = br.readLine()) != null) {
                 String[] messageData = line.split(",");

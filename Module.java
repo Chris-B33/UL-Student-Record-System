@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+
 /**
- * The `Module` class represents an academic module with attributes such as name, code, credits,
+ * The `Module` class represents an academic module with attributes such as
+ * name, code, credits,
  * file name, and a list of enrolled students.
  */
 public class Module {
@@ -39,7 +41,6 @@ public class Module {
     public Module(String name, String code) {
         this.name = name;
         this.code = code;
-        this.credits = credits;
         this.enrolledStudents = new ArrayList<>();
     }
 
@@ -151,5 +152,3 @@ public class Module {
         this.enrolledStudents = enrolledStudents;
     }
 }
-
-

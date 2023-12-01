@@ -15,7 +15,6 @@ public class GradeCalculator {
      * @return The calculated grade.
      */
     public static String getGrade(Module module, String id) {
-        String grade = "";
         String file = module.getFile();
         ArrayList<Double> studentResults = CSVReader.readStudentResult(file, id);
         int[] bounds = new int[12];
@@ -52,44 +51,31 @@ public class GradeCalculator {
         String grade = getGrade(module, id);
         double modCredits = module.getCredits();
         double modQCA = 0.0;
-        int i = 0;
 
         if (grade.equals("A1")) {
             modQCA += 4.0;
-            i++;
         } else if (grade.equals("A2")) {
             modQCA += 3.6;
-            i++;
         } else if (grade.equals("B1")) {
             modQCA += 3.2;
-            i++;
         } else if (grade.equals("B2")) {
             modQCA += 3.0;
-            i++;
         } else if (grade.equals("B3")) {
             modQCA += 2.8;
-            i++;
         } else if (grade.equals("C1")) {
             modQCA += 2.6;
-            i++;
         } else if (grade.equals("C2")) {
             modQCA += 2.4;
-            i++;
         } else if (grade.equals("C3")) {
             modQCA += 2.0;
-            i++;
         } else if (grade.equals("D1")) {
             modQCA += 1.6;
-            i++;
         } else if (grade.equals("D2")) {
             modQCA += 1.2;
-            i++;
         } else if (grade.equals("F")) {
             modQCA += 0.00;
-            i++;
         } else if (grade.equals("NG")) {
             modQCA += 0.00;
-            i++;
         }
 
         double modQCS = modQCA * modCredits;
