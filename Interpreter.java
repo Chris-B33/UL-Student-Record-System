@@ -18,11 +18,15 @@ public class Interpreter {
         while (run) {
             System.out.println("Commands: (S)tudent, (F)aculty, (D)epartment, (E)xit");
             String command = in.nextLine().toUpperCase();
-            
+
             switch (command) {
                 case "S":
                     System.out.println("What is your Student ID?");
                     String id = in.nextLine();
+                    if (returnStudent(id) == null) {
+                        System.out.println("Student doesn't exist");
+                        break;
+                    }
                     System.out.printf("[Student ID: %s]\n", id);
                     getMessages(id);
                     Student student = returnStudent(id);
@@ -35,7 +39,6 @@ public class Interpreter {
                     user.run();
                     break;
                 case "D":
-                    System.out.println("What is the name of your course?");
                     Department department = new Department(courseList.get(0));
                     user = new User("Department", department);
                     user.run();
@@ -82,28 +85,25 @@ public class Interpreter {
         ArrayList<Module> modList = CSVReader.initModList("LM174ModList.csv");
 
         int moduleIndex = 0;
-        for (Semester sem : semList)
-        {
-            while (moduleIndex < modList.size() && sem.getModules().size() < 5)
-            {
+        for (Semester sem : semList) {
+            while (moduleIndex < modList.size() && sem.getModules().size() < 5) {
                 sem.getModules().add(modList.get(moduleIndex));
                 moduleIndex++;
             }
-            if (moduleIndex >= modList.size())
-            {
+            if (moduleIndex >= modList.size()) {
                 break;
             }
         }
-        //Need to fix
+        // Need to fix
         // for (Module mod : modList) {
-            // int i = 1;
-            // int j = 0;
-            // if (i / 5 == 1) {
-                // j++;
-            // }
+        // int i = 1;
+        // int j = 0;
+        // if (i / 5 == 1) {
+        // j++;
+        // }
 
-            // course1.getSemesters().get(j).getModules().add(mod);
-            // i++;
+        // course1.getSemesters().get(j).getModules().add(mod);
+        // i++;
         // }
 
         courseList.add(course1);
@@ -173,7 +173,7 @@ public class Interpreter {
      */
     public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
-        
+
         m.setFile(fileName);
 
         m.setEnrolledStudents(CSVReader.readClassRole(fileName));
@@ -193,7 +193,6 @@ public class Interpreter {
         for (Course c : courseList) {
             ArrayList<Student> studList = c.getClassList();
             for (Student s : studList) {
-                System.out.println(s.getId());
                 if (s.getId().equals(id)) {
                     return s;
                 }
@@ -201,16 +200,14 @@ public class Interpreter {
         }
         return null;
     }
-    
-    public static Module returnModule(String code)
-    {
+
+    public static Module returnModule(String code) {
         for (Course c : courseList) {
             ArrayList<Semester> semList = c.getSemesters();
             for (Semester sem : semList) {
                 ArrayList<Module> modList = sem.getModules();
-                for (Module mod : modList)
-                {
-                    //System.out.println(s.getId());
+                for (Module mod : modList) {
+                    // System.out.println(s.getId());
                     if (mod.getCode().equals(code)) {
                         return mod;
                     }

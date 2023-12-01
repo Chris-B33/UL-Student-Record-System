@@ -42,12 +42,15 @@ public class User {
                     case "A":
                         System.out.println("What is the Student's ID?");
                         id = in.nextLine();
-                        Interpreter.returnStudent(id);
+                        if (Interpreter.returnStudent(id) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
                         System.out.println("What is the module's name?");
                         String code = in.nextLine();
                         Module mod = Interpreter.returnModule(code);
-                        //Module m = new Module(code, code);
-                        //m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
+                        // Module m = new Module(code, code);
+                        // m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
                         System.out.println("What is the grade?");
                         String grade = in.nextLine();
                         facu.addGradeToModule(new Student(id), mod, Double.parseDouble(grade));
@@ -55,6 +58,10 @@ public class User {
                     case "G":
                         System.out.println("Enter Student ID?");
                         id = in.nextLine();
+                        if (Interpreter.returnStudent(id) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
                         Student student = Interpreter.returnStudent(id);
                         facu.getStudentTranscript(student);
                         break;
@@ -75,6 +82,10 @@ public class User {
                     case "W":
                         System.out.println("What is the student's ID?");
                         String id = in.nextLine();
+                        if (Interpreter.returnStudent(id) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
                         System.out.println("What is the message?");
                         String message = in.nextLine();
                         depa.writeMessageToStudent(id, message);

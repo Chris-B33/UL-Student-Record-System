@@ -37,7 +37,7 @@ public class Department {
             if (classQCAsSem2[i] > classQCAsSem1[i]) {
                 count++;
             }
-            System.out.printf("Student %s: %s\n", classList.get(i).getId(), classQCAsSem2[i] - classQCAsSem1[i]);
+            System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem2[i] - classQCAsSem1[i]);
         }
         System.out.printf("Did the majority of the class increase their QCA: %s\n", count - (classLength / 2) > 0);
 
@@ -51,7 +51,7 @@ public class Department {
         double avg1 = sum1 / classLength;
         double avg2 = sum2 / classLength;
 
-        System.out.printf("Average QCA change: %s\n", avg1 - avg2);
+        System.out.printf("Average QCA change: %.2f\n", avg1 - avg2);
     }
 
     /**
@@ -61,6 +61,11 @@ public class Department {
      * @param message message to student
      */
     public void writeMessageToStudent(String id, String message) {
+        if (Interpreter.returnStudent(id) == null) {
+            System.out.println("Student doesn't exist");
+            return;
+        }
+
         try {
             CSVWriter.writeStudentMessage(id, message);
         } catch (IOException ex) {

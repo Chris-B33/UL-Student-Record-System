@@ -4,6 +4,9 @@ public class Faculty {
     }
 
     public void addGradeToModule(Student student, Module module, double grade) {
+        if (Interpreter.returnStudent(student.getId()) == null) {
+            System.out.println("Student doesn't exist");
+        }
         try {
             CSVWriter.insertGrade(student.getId(), grade, module.getCode() + ".csv");
         } catch (java.io.IOException ioe) {
@@ -12,7 +15,9 @@ public class Faculty {
     }
 
     public void getStudentTranscript(Student student) {
-        Student stu = student;
-        stu.getTranscript();
+        if (Interpreter.returnStudent(student.getId()) == null) {
+            System.out.println("Student doesn't exist");
+        }
+        student.getTranscript();
     }
 }
