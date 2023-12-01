@@ -56,7 +56,7 @@ public class User {
                         System.out.println("What is the module's name?");
                         String code = in.nextLine().toUpperCase();
                         if (Interpreter.returnModule(code) == null) {
-                            System.out.println("Student doesn't exist");
+                            System.out.println("Module doesn't exist");
                             break;
                         }
                         Module mod = Interpreter.returnModule(code);
