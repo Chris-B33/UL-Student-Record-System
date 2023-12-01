@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * The `User` class represents a user of various types and has different
+ * commands for each type of user.
+ */
 public class User {
     private String userType;
     private Object userObject;

@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The `Interpreter` class initializes all data and runs the command-line
+ * interface.
+ */
 public class Interpreter {
     private static User user;
     private static ArrayList<Course> courseList = new ArrayList<>();

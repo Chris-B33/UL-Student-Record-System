@@ -1,7 +1,10 @@
-
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The `Department` class represents a department in a college and can hold an
+ * exam board to review academic progression and write messages to students.
+ */
 public class Department {
     private Course course;
 
