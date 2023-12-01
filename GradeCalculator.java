@@ -91,7 +91,7 @@ public class GradeCalculator
             modQCA += 0.00;
             i++;
         } else {
-            System.out.println("I");
+            //System.out.println("I");
         }
 
         double modQCS = modQCA*modCredits;
