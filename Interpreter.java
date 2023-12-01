@@ -159,7 +159,7 @@ public class Interpreter {
      */
     public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
-        m.setFile(fileName);
+        m.setFile("data/" + fileName);
         m.setEnrolledStudents(CSVReader.readClassRole(fileName));
         m.setCredits(credits);
         return m;
