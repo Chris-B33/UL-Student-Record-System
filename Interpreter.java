@@ -53,11 +53,6 @@ public class Interpreter {
         in.close();
     }
 
-    /**
-     * Gets messages addressed to a student with a certain ID.
-     * 
-     * @param id ID of the student whos messages are being read.
-     */
     private static void getMessages(String id) {
         ArrayList<String> messages = CSVReader.readStudentMessages(id);
         for (int i = 0; i < messages.size(); i++) {
@@ -150,12 +145,13 @@ public class Interpreter {
     }
 
     /**
+     * Initializes a module given certain arguments.
      * 
-     * @param fileName
-     * @param name
-     * @param code
-     * @param credits
-     * @return Module
+     * @param fileName name of the file
+     * @param name     name of the module
+     * @param code     code name of the file
+     * @param credits  credits alotted to modle
+     * @return Module Module object with these arguments
      */
     public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
