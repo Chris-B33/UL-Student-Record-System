@@ -47,7 +47,22 @@ public class Department {
             }
             System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem2[i] - classQCAsSem1[i]);
         }
-        System.out.printf("Did the majority of the class increase their QCA: %s\n", count - (classLength / 2) > 0);
+        System.out.printf("Did the majority of the class increase their QCA: %s\n\n", count - (classLength / 2) > 0);
+
+        // Check who failed overall
+        System.out.println("Students who failed to get a QCA equal or above 2.00:");
+        System.out.println("Semester 1:");
+        for (int i = 0; i < classLength; i++) {
+            if (classQCAsSem1[i] < 2.0) {
+                System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem1[i]);
+            }
+        }
+        System.out.println("Semester 2:");
+        for (int i = 0; i < classLength; i++) {
+            if (classQCAsSem2[i] < 2.0) {
+                System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem2[i]);
+            }
+        }
 
         // See if average qca went up
         double sum1 = 0;
@@ -59,7 +74,7 @@ public class Department {
         double avg1 = sum1 / classLength;
         double avg2 = sum2 / classLength;
 
-        System.out.printf("Average QCA change: %.2f\n", avg1 - avg2);
+        System.out.printf("\nAverage QCA change: %.2f\n", avg1 - avg2);
     }
 
     /**
