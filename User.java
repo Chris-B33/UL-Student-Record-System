@@ -12,6 +12,9 @@ public class User {
         this.userObject = _userObject;
     }
 
+    /*
+     * Runs the sub-interpreter.
+     */
     public void run() {
         Scanner in = new Scanner(System.in);
         boolean run = true;

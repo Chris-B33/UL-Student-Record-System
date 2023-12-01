@@ -81,7 +81,6 @@ public class Interpreter {
             semList.add(s);
         }
         course1.setSemesters(semList);
-
         ArrayList<Module> modList = CSVReader.initModList("LM174ModList.csv");
 
         int moduleIndex = 0;
@@ -94,18 +93,6 @@ public class Interpreter {
                 break;
             }
         }
-        // Need to fix
-        // for (Module mod : modList) {
-        // int i = 1;
-        // int j = 0;
-        // if (i / 5 == 1) {
-        // j++;
-        // }
-
-        // course1.getSemesters().get(j).getModules().add(mod);
-        // i++;
-        // }
-
         courseList.add(course1);
     }
 
@@ -116,7 +103,6 @@ public class Interpreter {
      */
     private static void getMessages(String id) {
         ArrayList<String> messages = CSVReader.readStudentMessages(id);
-
         for (int i = 0; i < messages.size(); i++) {
             System.out.println(messages.get(i));
         }
@@ -173,13 +159,9 @@ public class Interpreter {
      */
     public static Module initModule(String fileName, String name, String code, double credits) {
         Module m = new Module(name, code);
-
         m.setFile(fileName);
-
         m.setEnrolledStudents(CSVReader.readClassRole(fileName));
-
         m.setCredits(credits);
-
         return m;
     }
 
