@@ -8,7 +8,6 @@ import java.nio.file.*;
  * This class provides methods to write and manipulate CSV files.
  * 
  * @author (Dara O'Malley)
- * @ID (22349243)
  */
 public class CSVWriter {
     /*

@@ -8,11 +8,16 @@ import java.util.ArrayList;
 public class Department {
     private Course course;
 
+    /**
+     * Constructor for a "Department" object
+     * 
+     * @param _course Department course
+     */
     public Department(Course _course) {
         this.course = _course;
     }
 
-    /*
+    /**
      * Runs exam board to review student progression.
      */
     public void holdExamBoard() {

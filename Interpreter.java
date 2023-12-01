@@ -64,7 +64,7 @@ public class Interpreter {
         }
     }
 
-    /*
+    /**
      * Initialize database of courses from csv files.
      */
     private static void initializeDatabase() {
@@ -183,6 +183,13 @@ public class Interpreter {
         return null;
     }
 
+    /**
+     * Returns a "Module" object given arguments and exists as a csv.
+     *
+     * @param code the code name of the module
+     * 
+     * @return Module the module object
+     */
     public static Module returnModule(String code) {
         for (Course c : courseList) {
             ArrayList<Semester> semList = c.getSemesters();

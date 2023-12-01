@@ -10,13 +10,16 @@ public class User {
 
     /**
      * Constructor for objects of class User
+     * 
+     * @param _userType   type of the user as a String
+     * @param _userObject type of the user as an Object
      */
     public User(String _userType, Object _userObject) {
         this.userType = _userType;
         this.userObject = _userObject;
     }
 
-    /*
+    /**
      * Runs the sub-interpreter.
      */
     public void run() {
