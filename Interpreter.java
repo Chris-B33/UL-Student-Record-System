@@ -53,6 +53,18 @@ public class Interpreter {
         in.close();
     }
 
+    /**
+     * Gets messages addressed to a student with a certain ID.
+     * 
+     * @param id ID of the student whos messages are being read.
+     */
+    private static void getMessages(String id) {
+        ArrayList<String> messages = CSVReader.readStudentMessages(id);
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(messages.get(i));
+        }
+    }
+
     /*
      * Initialize database of courses from csv files.
      */
@@ -94,18 +106,6 @@ public class Interpreter {
             }
         }
         courseList.add(course1);
-    }
-
-    /**
-     * Gets messages addressed to a student with a certain ID.
-     * 
-     * @param id ID of the student whos messages are being read.
-     */
-    private static void getMessages(String id) {
-        ArrayList<String> messages = CSVReader.readStudentMessages(id);
-        for (int i = 0; i < messages.size(); i++) {
-            System.out.println(messages.get(i));
-        }
     }
 
     /**
