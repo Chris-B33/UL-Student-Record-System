@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.io.*;
 
 /**
- * * This class provides methods to read and manipulate CSV files.
+ * The `CSVReader` class provides methods to read and manipulate CSV files.
  *
  * @author (Dara O'Malley)
  */

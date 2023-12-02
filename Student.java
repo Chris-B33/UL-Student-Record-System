@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * The 'Student' class represents a student with an id, name, and course and
  * can view a transcript of their grades.
@@ -9,12 +7,12 @@ public class Student {
      * The student's ID number.
      */
     private String id;
-    
+
     /**
      * The student's name.
      */
     private String name;
-    
+
     /**
      * The student's course of study.
      */
@@ -23,14 +21,10 @@ public class Student {
     /**
      * Constucts a new Student object with an ID, name and course.
      * 
-     * @param _id   The ID number of the student.
-     * @param n     The name of the student.
-     * @param c     The course the student is studying.
+     * @param _id The ID number of the student.
      */
-    public Student(String _id, String n, Course c) {
+    public Student(String _id) {
         this.id = _id;
-        this.name = n;
-        this.course = c;
     }
 
     /**
@@ -45,7 +39,7 @@ public class Student {
      * 
      * @return Student's ID.
      */
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
@@ -54,7 +48,7 @@ public class Student {
      * 
      * @return Student's name.
      */
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
@@ -63,7 +57,7 @@ public class Student {
      * 
      * @return The name of student's course of study.
      */
-    public String getCourseName(){
+    public String getCourseName() {
         return this.course.getName();
     }
 
@@ -72,7 +66,16 @@ public class Student {
      * 
      * @return Student's course of study.
      */
-    public Course getCourse(){
+    public Course getCourse() {
         return this.course;
+    }
+
+    /**
+     * Sets the student's course of study.
+     * 
+     * @param _course course of study.
+     */
+    public void setCourse(Course _course) {
+        this.course = _course;
     }
 }

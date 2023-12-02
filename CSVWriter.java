@@ -1,11 +1,10 @@
 import java.io.*;
 import java.util.*;
-import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 
 /**
- * This class provides methods to write and manipulate CSV files.
+ * The `CSVWriter` class provides methods to write and manipulate CSV files.
  * 
  * @author (Dara O'Malley)
  */
