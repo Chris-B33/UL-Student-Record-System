@@ -1,17 +1,27 @@
 import java.util.Scanner;
 
+/**
+ * The `User` class represents a user of various types and has different
+ * commands for each type of user.
+ */
 public class User {
     private String userType;
     private Object userObject;
 
     /**
      * Constructor for objects of class User
+     * 
+     * @param _userType   type of the user as a String
+     * @param _userObject type of the user as an Object
      */
     public User(String _userType, Object _userObject) {
         this.userType = _userType;
         this.userObject = _userObject;
     }
 
+    /**
+     * Runs the sub-interpreter.
+     */
     public void run() {
         Scanner in = new Scanner(System.in);
         boolean run = true;
@@ -37,13 +47,35 @@ public class User {
             while (run) {
                 System.out.println("Commands: (A)dd grade, (G)et transcript, (E)xit");
                 String command = in.nextLine().toUpperCase();
+                String id;
                 switch (command) {
                     case "A":
-                        facu.addGradeToModule(null, null, 0);
+                        System.out.println("What is the Student's ID?");
+                        id = in.nextLine();
+                        if (Interpreter.returnStudent(id) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
+                        System.out.println("What is the module's name?");
+                        String code = in.nextLine().toUpperCase();
+                        if (Interpreter.returnModule(code) == null) {
+                            System.out.println("Module doesn't exist");
+                            break;
+                        }
+                        Module mod = Interpreter.returnModule(code);
+                        // Module m = new Module(code, code);
+                        // m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
+                        System.out.println("What is the result?");
+                        String grade = in.nextLine();
+                        facu.addGradeToModule(new Student(id), mod, Double.parseDouble(grade));
                         break;
                     case "G":
                         System.out.println("Enter Student ID?");
-                        String id = in.nextLine();
+                        id = in.nextLine();
+                        if (Interpreter.returnStudent(id) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
                         Student student = Interpreter.returnStudent(id);
                         facu.getStudentTranscript(student);
                         break;
@@ -64,6 +96,10 @@ public class User {
                     case "W":
                         System.out.println("What is the student's ID?");
                         String id = in.nextLine();
+                        if (Interpreter.returnStudent(id) == null) {
+                            System.out.println("Student doesn't exist");
+                            break;
+                        }
                         System.out.println("What is the message?");
                         String message = in.nextLine();
                         depa.writeMessageToStudent(id, message);

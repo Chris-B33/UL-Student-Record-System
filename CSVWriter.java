@@ -8,7 +8,6 @@ import java.nio.file.*;
  * This class provides methods to write and manipulate CSV files.
  * 
  * @author (Dara O'Malley)
- * @ID (22349243)
  */
 public class CSVWriter {
     /*
@@ -29,7 +28,7 @@ public class CSVWriter {
      * @throws IOException If an input or output exception occurred.
      */
     public static void insertGrade(String id, double grade, String moduleName) throws IOException {
-        File csvFile = new File(moduleName);
+        File csvFile = new File("data/" + moduleName);
         List<String> lines = Files.readAllLines(csvFile.toPath(), StandardCharsets.UTF_8);
 
         for (int i = 0; i < lines.size(); i++) {
@@ -61,7 +60,7 @@ public class CSVWriter {
      * @throws IOException If an input or output exception occurred.
      */
     public static void removeGrade(String id, int index, String moduleName) throws IOException {
-        Path path = Paths.get(moduleName);
+        Path path = Paths.get("data/" + moduleName);
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
         for (int i = 0; i < lines.size(); i++) {
@@ -100,7 +99,7 @@ public class CSVWriter {
      * @throws IOException If an input or output exception occurred.
      */
     public static void writeStudentMessage(String id, String message) throws IOException {
-        Path path = Paths.get("messages.csv");
+        Path path = Paths.get("data/messages.csv");
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
         int i;
@@ -136,7 +135,7 @@ public class CSVWriter {
     public static void addStudent(String fileName, String id) {
         BufferedWriter bw = null;
         try {
-            bw = new BufferedWriter(new FileWriter(fileName, true));
+            bw = new BufferedWriter(new FileWriter("data/" + fileName, true));
             bw.write(id);
             bw.newLine();
             bw.flush();

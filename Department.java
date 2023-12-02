@@ -1,28 +1,39 @@
-
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The `Department` class represents a department in a college and can hold an
+ * exam board to review academic progression and write messages to students.
+ */
 public class Department {
     private Course course;
 
+    /**
+     * Constructor for a "Department" object
+     * 
+     * @param _course Department course
+     */
     public Department(Course _course) {
         this.course = _course;
     }
 
+    /**
+     * Runs exam board to review student progression.
+     */
     public void holdExamBoard() {
         int classLength = this.course.getClassList().size();
         ArrayList<Student> classList = this.course.getClassList();
         ArrayList<Semester> semesterList = this.course.getSemesters();
 
         // Examine qca of each student from last semester
-        Semester lastSemester = semesterList.get(semesterList.size() - 2);
+        Semester lastSemester = semesterList.get(0);
         double[] classQCAsSem1 = new double[classLength];
         for (int i = 0; i < classLength; i++) {
             classQCAsSem1[i] = GradeCalculator.calculateQCA(lastSemester, classList.get(i).getId());
         }
 
         // Repeat for current semester
-        Semester thisSemester = semesterList.get(semesterList.size() - 1);
+        Semester thisSemester = semesterList.get(1);
         double[] classQCAsSem2 = new double[classLength];
         for (int i = 0; i < classLength; i++) {
             classQCAsSem2[i] = GradeCalculator.calculateQCA(thisSemester, classList.get(i).getId());
@@ -34,9 +45,24 @@ public class Department {
             if (classQCAsSem2[i] > classQCAsSem1[i]) {
                 count++;
             }
-            System.out.printf("Student %s: %s\n", classList.get(i).getId(), classQCAsSem2[i] - classQCAsSem1[i]);
+            System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem2[i] - classQCAsSem1[i]);
         }
-        System.out.printf("Did the majority of the class increase their QCA: %s\n", count - (classLength / 2) > 0);
+        System.out.printf("Did the majority of the class increase their QCA: %s\n\n", count - (classLength / 2) > 0);
+
+        // Check who failed overall
+        System.out.println("Students who failed to get a QCA equal or above 2.00:");
+        System.out.println("Semester 1:");
+        for (int i = 0; i < classLength; i++) {
+            if (classQCAsSem1[i] < 2.0) {
+                System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem1[i]);
+            }
+        }
+        System.out.println("Semester 2:");
+        for (int i = 0; i < classLength; i++) {
+            if (classQCAsSem2[i] < 2.0) {
+                System.out.printf("Student %s: %.2f\n", classList.get(i).getId(), classQCAsSem2[i]);
+            }
+        }
 
         // See if average qca went up
         double sum1 = 0;
@@ -48,10 +74,21 @@ public class Department {
         double avg1 = sum1 / classLength;
         double avg2 = sum2 / classLength;
 
-        System.out.printf("Average QCA change: %s\n", avg1 - avg2);
+        System.out.printf("\nAverage QCA change: %.2f\n", avg1 - avg2);
     }
 
+    /**
+     * Stores a message for a student given their ID
+     * 
+     * @param id      id of student
+     * @param message message to student
+     */
     public void writeMessageToStudent(String id, String message) {
+        if (Interpreter.returnStudent(id) == null) {
+            System.out.println("Student doesn't exist");
+            return;
+        }
+
         try {
             CSVWriter.writeStudentMessage(id, message);
         } catch (IOException ex) {
@@ -59,6 +96,11 @@ public class Department {
         }
     }
 
+    /**
+     * Gets the name of the course.
+     * 
+     * @return String name of the course.
+     */
     public String getName() {
         return this.course.getName();
     }

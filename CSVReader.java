@@ -5,21 +5,21 @@ import java.io.*;
  * * This class provides methods to read and manipulate CSV files.
  *
  * @author (Dara O'Malley)
- * @ID (22349243)
  */
 public class CSVReader {
     private static String messagesFileName = "messages.csv";
 
     /**
      * Sets the file name for the messages file.
+     * 
      * @param fileName The name of the file.
      */
     public static void setMessagesFileName(String fileName) {
         messagesFileName = fileName;
     }
 
-    
-    /* CSVFile layout example
+    /*
+     * CSVFile layout example
      *
      * 0,NG
      * 1,F
@@ -37,9 +37,10 @@ public class CSVReader {
      */
     /**
      * Reads the grading scheme from a CSV file.
+     * 
      * @param fileName The name of the file.
-     * @param bounds An array to store the grade boundaries.
-     * @param grades An array to store the corresponding grades.
+     * @param bounds   An array to store the grade boundaries.
+     * @param grades   An array to store the corresponding grades.
      * @throws IOException If an input or output exception occurred.
      *
      */
@@ -47,7 +48,7 @@ public class CSVReader {
         String line = "";
         String splitBy = ",";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/" + fileName))) {
             int i = 0;
             while ((line = br.readLine()) != null) {
                 String[] gradeScheme = line.split(splitBy);
@@ -62,8 +63,8 @@ public class CSVReader {
         }
     }
 
-    
-    /* CSVFile layout example
+    /*
+     * CSVFile layout example
      *
      * student1Id,result1,result2,result3
      * student2Id,result1,result2,result3
@@ -73,13 +74,14 @@ public class CSVReader {
      */
     /**
      * Reads the class role from a CSV file.
+     * 
      * @param fileName The name of the file.
      * @return An ArrayList of Strings representing the class role.
      */
     public static ArrayList<String> readClassRole(String fileName) {
         ArrayList<String> classRole = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/" + fileName))) {
             String line = "";
             String splitBy = ",";
             while ((line = br.readLine()) != null) {
@@ -97,8 +99,8 @@ public class CSVReader {
         return classRole;
     }
 
-    
-    /* CSVFile layout example
+    /*
+     * CSVFile layout example
      *
      * student1Id,result1,result2,result3
      * student2Id,result1,result2,result3
@@ -108,8 +110,9 @@ public class CSVReader {
      */
     /**
      * Reads the results of a specific student from a CSV file.
+     * 
      * @param fileName The name of the file.
-     * @param id The ID of the student.
+     * @param id       The ID of the student.
      * @return An ArrayList of Doubles representing the student's results.
      */
     public static ArrayList<Double> readStudentResult(String fileName, String id) {
@@ -136,8 +139,8 @@ public class CSVReader {
         return stuResults;
     }
 
-    
-    /* CSVFile layout example
+    /*
+     * CSVFile layout example
      *
      * student1Id,message1,message2,message3
      * student2Id,message1,message2,message3
@@ -147,15 +150,15 @@ public class CSVReader {
      */
     /**
      * Reads the messages of a specific student from a CSV file.
+     * 
      * @param id The ID of the student.
      * @return An ArrayList of Strings representing the student's messages.
      */
     public static ArrayList<String> readStudentMessages(String id) {
         ArrayList<String> messages = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(messagesFileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/" + messagesFileName))) {
             String line = "";
-            String inbox = "";
 
             while ((line = br.readLine()) != null) {
                 String[] messageData = line.split(",");
@@ -173,8 +176,8 @@ public class CSVReader {
         return messages;
     }
 
-    
-    /* CSVFile layout example
+    /*
+     * CSVFile layout example
      *
      * student1Id,student1Name
      * student2Id,student2Name
@@ -184,13 +187,14 @@ public class CSVReader {
      */
     /**
      * Reads the student IDs from a CSV file.
+     * 
      * @param fileName The name of the file.
      * @return An ArrayList of Strings representing the student IDs.
      */
     public static ArrayList<String> initStudentId(String fileName) {
         ArrayList<String> idList = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/" + fileName))) {
             String line = "";
             String splitBy = ",";
             while ((line = br.readLine()) != null) {
@@ -207,37 +211,34 @@ public class CSVReader {
 
         return idList;
     }
-    
+
     /**
      * Initializes the module list from a CSV file.
+     * 
      * @param fileName The name of the file.
      * @return An ArrayList of Module objects.
      */
-    public static ArrayList<Module> initModList(String fileName)
-    {
+    public static ArrayList<Module> initModList(String fileName) {
         ArrayList<Module> modList = new ArrayList<>();
-        
+
         String line = "";
         String csvSplitBy = ",";
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName)))
-        {
-            while ((line = br.readLine()) != null)
-            {
+
+        try (BufferedReader br = new BufferedReader(new FileReader("data/" + fileName))) {
+            while ((line = br.readLine()) != null) {
                 String[] modData = line.split(csvSplitBy);
-                
+
                 String file = modData[0];
                 String name = modData[1];
                 String code = modData[2];
                 double creds = Double.parseDouble(modData[3]);
-                Module m = Interpreter.initModule(file,name,code,creds);
+                Module m = Interpreter.initModule(file, name, code, creds);
                 modList.add(m);
             }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         return modList;
     }
 }
