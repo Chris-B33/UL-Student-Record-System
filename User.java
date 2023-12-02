@@ -65,7 +65,7 @@ public class User {
                         Module mod = Interpreter.returnModule(code);
                         // Module m = new Module(code, code);
                         // m.setEnrolledStudents(CSVReader.readClassRole(code + ".csv"));
-                        System.out.println("What is the grade?");
+                        System.out.println("What is the result?");
                         String grade = in.nextLine();
                         facu.addGradeToModule(new Student(id), mod, Double.parseDouble(grade));
                         break;
