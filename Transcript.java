@@ -1,7 +1,19 @@
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * The 'Transcript' class displays a full student transcript for a student
+ * which includes their name, course, id, time they displayed the transcript
+ * and each module they have completed with a grade, credits and QCS,
+ * seperated by semester with their QCA. 
+ */
 public class Transcript {
+    
+    /**
+     * Prints the student transcript.
+     * 
+     * @param student   The student who's transcript is displayed.
+     */
     public static void displayTranscript(Student student) {
         Course c = student.getCourse();
 
@@ -17,6 +29,11 @@ public class Transcript {
 
     }
 
+    /**
+     * Prints a header for the top of the transcript.
+     * 
+     * @param stu   The student who's transcript is displayed.
+     */
     private static void header(Student stu){
         String box = "+------------------------------------------------------------------------------------------------------------------------+";
         String gap = "|                                                                                                                        |";
@@ -29,6 +46,12 @@ public class Transcript {
         System.out.println(box);
     }
 
+    /**
+     * Prints all the modules and results in a box for each semester.
+     * 
+     * @param sem       The semester the box represents.
+     * @param student   The student who's transcript is displayed.
+     */
     private static void semesterBox(Semester sem, Student student){
         String boxQCA = "+--------------------------------------------------------------------------------------------+---------------------------+";
         String gapQCA = "|                                                                                            |                           |";
