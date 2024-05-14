@@ -10,7 +10,8 @@ This system would hold students transcripts, make them accessible and editable b
 ## Installation
 
 Download this repository and run "Interpreter.java" from the command line.<br>
-From there you can choose to act as a student, teacher or department.
+From there you can choose to act as a student, teacher or department.<br>
+There is also full documentation inside of the "docs" folder.
 
 ## Meeting Summaries
 
