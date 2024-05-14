@@ -1,7 +1,6 @@
 # UL-Student-Record-System Project Progress
 
-<img alt="GitHub forks" src="https://img.shields.io/github/forks/Chris-B33/UL-student-record-system">
-<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Chris-B33/UL-student-record-system">
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/Chris-B33/UL-student-record-system"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Chris-B33/UL-student-record-system">
 
 ## Description
 
