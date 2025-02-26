@@ -4,7 +4,7 @@
 
 ## Description
 
-This is a project undertook by me and a few classmates tocreate a mock student record system.<br>
+This is a project undertook by some of my classmates and I to create a mock student record system.<br>
 This system would hold students transcripts, make them accessible and editable by teachers and allow for review by department heads.
 
 ## Installation
