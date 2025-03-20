@@ -1,6 +1,6 @@
 # UL-Student-Record-System Project Progress
 
-<a><img alt="Documents Preview" src="https://img.shields.io/badge/Documentation-Preview-blue"></a>
+<a href="docs/index-all.html"><img alt="Documents Preview" src="https://img.shields.io/badge/Documentation-Preview-blue"></a>
 
 ## Description
 
