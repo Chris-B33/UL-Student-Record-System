@@ -1,6 +1,6 @@
 # UL-Student-Record-System Project Progress
 
-<a href="docs/index-all.html"><img alt="Documents Preview" src="https://img.shields.io/badge/Documentation-Preview-blue"></a>
+<a href="https://html-preview.github.io/?url=https://github.com/Chris-B33/UL-Student-Record-System/blob/main/docs/package-summary.html"><img alt="Documents Preview" src="https://img.shields.io/badge/Documentation-Preview-blue"></a>
 
 ## Description
 
